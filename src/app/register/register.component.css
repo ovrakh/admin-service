@@ -1,0 +1,76 @@
+.login {
+  position: relative;
+  margin: 200px auto;
+  width: 300px;
+  padding-right: 32px;
+  font-weight: 300;
+  color: #a8a7a8;
+  text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.8);
+}
+
+input, button, label {
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: 15px;
+  font-weight: 300;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+input[type=text], input[type=password] {
+  padding: 0 10px;
+  width: 300px;
+  height: 40px;
+  color: #bbb;
+  text-shadow: 1px 1px 1px black;
+  background: rgba(0, 0, 0, 0.16);
+  border: 0;
+  border-radius: 5px;
+  -webkit-box-shadow: inset 0 1px 4px rgba(0, 0, 0, 0.3), 0 1px rgba(255, 255, 255, 0.06);
+  box-shadow: inset 0 1px 4px rgba(0, 0, 0, 0.3), 0 1px rgba(255, 255, 255, 0.06);
+}
+input[type=text]:focus, input[type=password]:focus {
+  color: white;
+  background: rgba(0, 0, 0, 0.1);
+  outline: 0;
+}
+
+.sign-in {
+  text-align: center;
+}
+
+button {
+  background: #9E9E9E;
+  color: white;
+}
+
+label {
+  float: left;
+  width: 150px;
+  line-height: 40px;
+  padding-right: 10px;
+  font-weight: 100;
+  text-align: left;
+}
+
+nav {
+  text-align: center;
+}
+
+.login a {
+  padding: 5px 10px;
+  text-decoration: none;
+  margin-top: 10px;
+  display: inline-block;
+  background-color: #eee;
+  border-radius: 4px;
+}
+.login a:visited, a:link {
+  color: #607D8B;
+}
+.login a:hover {
+  color: #039be5;
+  background-color: #CFD8DC;
+}
+.login a.active {
+  color: #039be5;
+}
