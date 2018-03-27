@@ -21,10 +21,19 @@ export class RegisterComponent implements OnInit {
     private authService: AuthService) { }
 
   ngOnInit() {
+    this.resetForm();
   }
 
-  add(/*name: string, password: string, repeatPassword*/form: NgForm): void {
-    
+  resetForm(form?: NgForm) {
+    if (form != null)
+      form.reset();
+    this.user = {
+      email: '',
+      password: ''
+    }
+  }
+
+  add(form: NgForm): void {
     this.authService.registerUser({ email: form.value.email, password: form.value.password })
       .subscribe((data: any) => {
         if (data.Succeeded == true) {

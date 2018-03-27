@@ -3,15 +3,15 @@
   <a routerLink="/authorization">Log in</a>
   <div>
   <p>
-    <label data-error="Required field!">UserName</label>
-    <input class="validate" type="text" name="UserName" #UserName="ngModel" [(ngModel)]="user.UserName" required>
+    <label data-error="Required field!">Email</label>
+    <input class="validate" type="text" name="email" #email="ngModel" [(ngModel)]="user.email" required>
   </p>
   </div>
 
   <div>
   <p>
-    <label for="password">Пароль:</label>
-    <input #password type="password" name="password" id="password" value="4815162342">
+    <label>Пароль:</label>
+    <input #password type="password" name="password" #password="ngModel" [(ngModel)]="user.password" required>
   </p>
   </div>
 
