@@ -1,7 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { RegService } from '../reg.service';
+import { AuthService } from '../services/auth.service';
+import { NgForm } from "@angular/forms/forms";
+import { ToastrService } from 'ngx-toastr';
+import { User } from '../services/user.model';
+
 
 @Component({
   selector: 'app-register',
@@ -9,25 +13,25 @@ import { RegService } from '../reg.service';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
+  user: User;
+  private toastr: ToastrService;
 
   constructor(
-    private router: Router
-    /*private regService: RegService*/) { }
+    private router: Router,
+    private authService: AuthService) { }
 
   ngOnInit() {
   }
 
-  add(name: string, password: string): void {
-    name = name.trim();
-    password = password.trim();
-    if (!name) { return; }
-    if (!password) { return; }
-    alert(name);
-    this.router.navigate(['/']);
-    // this.heroService.addHero({ name } as Hero)
-    //   .subscribe(hero => {
-    //     this.heroes.push(hero);
-    //   });
+  add(/*name: string, password: string, repeatPassword*/form: NgForm): void {
+    
+    this.authService.registerUser({ email: form.value.email, password: form.value.password })
+      .subscribe((data: any) => {
+        if (data.Succeeded == true) {
+          alert('User registration successful');
+        }
+        else
+          alert('ERROR')
+      });
   }
-
 }
