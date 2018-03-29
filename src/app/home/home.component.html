@@ -1,0 +1,17 @@
+<div class="container color-dark">
+</div>
+<div class="container color-light" [@todos]="todos.length">
+  <div class="col">
+
+    <form>
+      <input type="text" class="txt" name="item" [(ngModel)]="todoText">
+      <input type="submit" class="btn" value="{{ btnText }}" (click)="addItem()">
+    </form>
+  </div>
+  <div class="col">
+    <p class="life-container" *ngFor="let todo of todos; let i = index" (click)="showTask(todo)">
+      {{ todo['name'] }}
+      <button class="btn btn-default" (click)="removeItem(todo, i)">Удалить</button>
+    </p>
+  </div>
+</div>

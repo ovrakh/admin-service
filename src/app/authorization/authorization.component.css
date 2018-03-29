@@ -56,7 +56,13 @@ nav {
   text-align: center;
 }
 
-.login a {
+.login .ling-registration {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}
+
+.login .ling-registration a {
   padding: 5px 10px;
   text-decoration: none;
   margin-top: 10px;
@@ -64,13 +70,16 @@ nav {
   background-color: #eee;
   border-radius: 4px;
 }
-.login a:visited, a:link {
+.login .ling-registration p{
+  padding-right: 10px;
+}
+.login .ling-registration a:visited, a:link {
   color: #607D8B;
 }
-.login a:hover {
+.login .ling-registration a:hover {
   color: #039be5;
   background-color: #CFD8DC;
 }
-.login a.active {
+.login .ling-registration a.active {
   color: #039be5;
 }

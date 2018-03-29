@@ -2,9 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { AuthService } from '../services/auth.service';
-import {NgForm} from "@angular/forms/forms";
 import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { User } from '../services/user.model';
 
 
 @Component({
@@ -14,7 +12,6 @@ import { User } from '../services/user.model';
 })
 export class RegisterComponent implements OnInit {
   ReactiveForm: FormGroup;
-  user: User;
 
   constructor(
     private router: Router,
@@ -52,7 +49,7 @@ export class RegisterComponent implements OnInit {
         data => {
           console.log(data);
           alert('User registration successful');
-          this.router.navigate(['/']);
+          this.router.navigate(['/home']);
       }, error => {
           console.log(error);
           alert('User registration error');

@@ -7,10 +7,12 @@ import { BrowserAnimationsModule } from  '@angular/platform-browser/animations';
 
 import { AppComponent } from './app.component';
 import { RegisterComponent } from './register/register.component';
-import { AuthService } from './services/auth.service'
+import { AuthService } from './services/auth.service';
+import { ApiService } from './services/api.service';
 import { AuthorizationComponent } from './authorization/authorization.component';
 import { AppRoutingModule } from './/app-routing.module';
 import { HomeComponent } from './home/home.component';
+import { TaskComponent } from './task/task.component';
 
 
 @NgModule({
@@ -18,7 +20,8 @@ import { HomeComponent } from './home/home.component';
     AppComponent,
     RegisterComponent,
     AuthorizationComponent,
-    HomeComponent
+    HomeComponent,
+    TaskComponent
   ],
   imports: [
     BrowserModule,
@@ -29,7 +32,8 @@ import { HomeComponent } from './home/home.component';
     BrowserAnimationsModule
   ],
   providers: [
-    AuthService
+    AuthService,
+    ApiService
   ],
   bootstrap: [AppComponent]
 })

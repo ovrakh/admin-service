@@ -1,24 +1,30 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from "@angular/common/http";
-// import { Observable } from "rxjs/Rx";
-import { User } from './user.model';
-import {BehaviorSubject} from "rxjs/Rx";
-import {Config} from "./Config";
+import { HttpClient } from "@angular/common/http";
+import { Subject } from "rxjs/Rx";
 
-const httpOptions = {
-  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
-};
+import { ApiService } from "./api.service";
+import { User } from './user.model';
+import { Company } from './company.model';
+
 
 @Injectable()
 export class AuthService {
 
-  private todos = new BehaviorSubject<any>(['sss']);
-  todo = this.todos.asObservable();
+  private todo = new Subject<any>();
 
 
   private url = 'http://localhost:3000';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient,
+              private apiService: ApiService) { }
+
+  getCompanies() {
+    return this.apiService.get(this.url + '/companies');
+  }
+
+  removeCompany(id) {
+    return this.apiService.get(this.url + `/company/remove?_id=${id}`)
+  }
 
   registerUser(user: User) {
     const body: User = {
@@ -26,7 +32,7 @@ export class AuthService {
       password: user.password,
     };
     // var reqHeader = new HttpHeaders({'No-Auth':'True'});
-    return this.http.post(this.url + '/user/sign-up', body,{headers : httpOptions.headers});
+    return this.apiService.post(this.url + '/user/sign-up', body);
   }
 
   userAuthentication(email, password) {
@@ -35,15 +41,23 @@ export class AuthService {
       password: password,
     };
 
-    return this.http.post(this.url + '/user/sign-in', body, { headers: httpOptions.headers });
+    return this.apiService.post(this.url + '/user/sign-in', body);
   }
 
-  getCompanies() {
-    return this.http.get(this.url + '/companies');
+  addCompany(company: Company) {
+    const body: Company = {
+      name: company.name
+    };
+    // var reqHeader = new HttpHeaders({'No-Auth':'True'});
+    return this.apiService.post(this.url + '/company/add', body);
   }
 
   changeTodo(todo) {
-    this.todos.next(todo)
+    this.todo.next(todo)
+  }
+  
+  getTodo() {
+    return this.todo;
   }
 
 }
