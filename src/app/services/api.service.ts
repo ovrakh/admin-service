@@ -10,10 +10,15 @@ const httpOptions = {
 
 @Injectable()
 export class ApiService {
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+    
+  }
 
   public get(url): Observable<any> {
-    return this.http.get(url)
+    const httpOptions = {
+      headers : new HttpHeaders({'Authorization' : localStorage.getItem('token')})
+  };
+    return this.http.get(url, { headers : httpOptions.headers })
       .pipe(
         tap(_ => console.log('Success')),
         catchError(this.handleError<any>('Error'))

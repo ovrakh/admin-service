@@ -9,6 +9,8 @@ import { AppComponent } from './app.component';
 import { RegisterComponent } from './register/register.component';
 import { AuthService } from './services/auth.service';
 import { ApiService } from './services/api.service';
+import { HomeService } from './services/home.service';
+import { TaskService } from './services/task.service';
 import { AuthorizationComponent } from './authorization/authorization.component';
 import { AppRoutingModule } from './/app-routing.module';
 import { HomeComponent } from './home/home.component';
@@ -33,7 +35,9 @@ import { TaskComponent } from './task/task.component';
   ],
   providers: [
     AuthService,
-    ApiService
+    ApiService,
+    HomeService,
+    TaskService
   ],
   bootstrap: [AppComponent]
 })

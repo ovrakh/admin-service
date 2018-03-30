@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { trigger,style,transition,animate,keyframes,query,stagger } from '@angular/animations';
 import { AuthService } from '../services/auth.service';
 import { Router } from "@angular/router";
+import {HomeService} from "../services/home.service";
 
 @Component({
   selector: 'app-home',
@@ -38,19 +39,20 @@ export class HomeComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private _data: AuthService) { }
+    private homeService: HomeService) { }
 
   ngOnInit() {
-    this._data.getCompanies()
+    this.homeService.getCompanies()
       .subscribe(res => {
+        console.log("res", res);
         this.todos = res['data'];
       });
-    this._data.changeTodo(this.todos);
+    //this.homeService.changeTodo(this.todos);
     this.itemCount = this.todos.length;
   }
 
   addItem() {
-    this._data.addCompany({ name: this.todoText })
+    this.homeService.addCompany({ name: this.todoText })
       .subscribe(
         () => {
         console.log('Company added');
@@ -60,11 +62,11 @@ export class HomeComponent implements OnInit {
     this.todos.push({ name: this.todoText });
     this.todoText = '';
     this.itemCount = this.todos.length;
-    this._data.changeTodo(this.todos);
+    //this.homeService.changeTodo(this.todos);
   }
 
   removeItem(todo, i) {
-    this._data.removeCompany(todo._id)
+    this.homeService.removeCompany(todo._id)
       .subscribe(res => {
         console.log('RES', res)
       },
@@ -72,12 +74,12 @@ export class HomeComponent implements OnInit {
         console.log('ERROR', error)
       });
     this.todos.splice(i, 1);
-    this._data.changeTodo(this.todos);
+    //this.homeService.changeTodo(this.todos);
     this.itemCount = this.todos.length;
   }
 
   showTask(task) {
-    this.router.navigate(['/task'], task.id);
+    this.router.navigate(['/task'], { queryParams : { name : task.name } });
   }
 
 }

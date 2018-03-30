@@ -4,18 +4,20 @@ import { RouterModule, Routes } from '@angular/router';
 import { RegisterComponent } from './register/register.component';
 import { AuthorizationComponent } from './authorization/authorization.component';
 import { HomeComponent } from './home/home.component'
-import {TaskComponent} from "./task/task.component";
+import { TaskComponent } from "./task/task.component";
+import { HomeGuard }   from './home/home.guards';
 
 const routes: Routes = [
   { path: '', redirectTo: '/authorization', pathMatch: 'full'},
   { path: 'register', component: RegisterComponent },
   { path: 'authorization', component: AuthorizationComponent },
-  { path: 'home', component: HomeComponent },
+  { path: 'home', component: HomeComponent, canActivate: [ HomeGuard ] },
   { path: 'task', component: TaskComponent }
 ]
 
 @NgModule({
   imports: [ RouterModule.forRoot(routes) ],
-  exports: [ RouterModule ]
+  exports: [ RouterModule ],
+  providers: [ HomeGuard ]
 })
 export class AppRoutingModule { }

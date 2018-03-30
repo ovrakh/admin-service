@@ -1,29 +1,38 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
-import { Subject } from "rxjs/Rx";
+import {Subject, Observable, ReplaySubject} from "rxjs/Rx";
 
 import { ApiService } from "./api.service";
 import { User } from './user.model';
 import { Company } from './company.model';
 
-
 @Injectable()
 export class AuthService {
 
-  private todo = new Subject<any>();
-
-
   private url = 'http://localhost:3000';
+
+  private user: ReplaySubject<any> = new ReplaySubject(1);
+  private isLoadUser = false;
 
   constructor(private http: HttpClient,
               private apiService: ApiService) { }
 
-  getCompanies() {
-    return this.apiService.get(this.url + '/companies');
+  getUsers() {
+    return this.apiService.get(this.url + '/users')
+      .map(result => {
+        console.log("get comp serv data=", result);
+        this.setUser(result.data);
+        return result;
+      });
   }
 
-  removeCompany(id) {
-    return this.apiService.get(this.url + `/company/remove?_id=${id}`)
+  asUser(token) {
+    return this.apiService.get(this.url + '/user')
+      .map(result => {
+        console.log("TOKEN EXP", result);
+        //this.setUser(result.data);
+        return result.data.success;
+      });
   }
 
   registerUser(user: User) {
@@ -44,20 +53,21 @@ export class AuthService {
     return this.apiService.post(this.url + '/user/sign-in', body);
   }
 
-  addCompany(company: Company) {
-    const body: Company = {
-      name: company.name
-    };
-    // var reqHeader = new HttpHeaders({'No-Auth':'True'});
-    return this.apiService.post(this.url + '/company/add', body);
+  setUser(user) {
+    this.isLoadUser = Boolean(user);
+    this.user.next(user);
   }
 
-  changeTodo(todo) {
-    this.todo.next(todo)
-  }
-  
-  getTodo() {
-    return this.todo;
+  getUser(): Observable<any> {
+    if (this.isLoadUser) {
+      return this.user.asObservable();
+    } else {
+      return this.getUsers()
+        .map(result => {
+          this.setUser(result.data);
+          return result.data;
+        });
+    }
   }
 
 }

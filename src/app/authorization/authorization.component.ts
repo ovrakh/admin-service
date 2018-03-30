@@ -22,9 +22,11 @@ export class AuthorizationComponent implements OnInit {
 
   onSubmit(username, password) {
     this.authService.userAuthentication(username,password)
-      .subscribe((data)=>{
-        console.log(data);
-        if (data['success'])
+      .subscribe((res)=>{
+        console.log('TOKEN', res['data']['token']);
+      //  localStorage.setItem('token', res['data']['token']);
+        console.log('success', res['success'])
+        if (res['success'])
           this.router.navigate(['/home']);
       },
       (err)=>{
