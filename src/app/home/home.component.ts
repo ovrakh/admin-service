@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { trigger,style,transition,animate,keyframes,query,stagger } from '@angular/animations';
 import { AuthService } from '../services/auth.service';
 import { Router } from "@angular/router";
-import {HomeService} from "../services/home.service";
+import { HomeService } from "../services/home.service";
 
 @Component({
   selector: 'app-home',
@@ -53,11 +53,8 @@ export class HomeComponent implements OnInit {
 
   addItem() {
     this.homeService.addCompany({ name: this.todoText })
-      .subscribe(
-        () => {
-        console.log('Company added');
-      }, error => {
-        console.log(error);
+      .subscribe(res => {
+        console.log('addCompanyres',res)
       });
     this.todos.push({ name: this.todoText });
     this.todoText = '';

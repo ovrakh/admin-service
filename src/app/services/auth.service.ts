@@ -35,16 +35,17 @@ export class AuthService {
       });
   }
 
-  registerUser(user: User) {
+  registerUser(email, password) {
     const body: User = {
-      email: user.email,
-      password: user.password,
+      email: email,
+      password: password,
     };
+    console.log('BODY', body)
     // var reqHeader = new HttpHeaders({'No-Auth':'True'});
     return this.apiService.post(this.url + '/user/sign-up', body);
   }
 
-  userAuthentication(email, password) {
+  userAuthentication(email, password) { 
     const body: User = {
       email: email,
       password: password,

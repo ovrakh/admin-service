@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import {PasswordValidation} from '../util/passwordvalidation'
 
 import { AuthService } from '../services/auth.service';
 import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
@@ -11,7 +12,7 @@ import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms'
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
-  ReactiveForm: FormGroup;
+  RegisterForm: FormGroup;
 
   constructor(
     private router: Router,
@@ -33,31 +34,28 @@ export class RegisterComponent implements OnInit {
     }
   }*/
 
-  onSubmit(): void {
-    console.log('submit');
-    const controls = this.ReactiveForm.controls;
+  onSubmit() {
+    const controls = this.RegisterForm.controls;
 
-    if (this.ReactiveForm.invalid) {
+    if (this.RegisterForm.invalid) {
+      console.log('INVALID', this.RegisterForm.invalid)
       Object.keys(controls)
         .forEach(controlName => controls[controlName].markAsTouched());
 
       return;
     }
 
-    this.authService.registerUser({ email: this.ReactiveForm.value.email, password: this.ReactiveForm.value.password })
+    this.authService.registerUser(this.RegisterForm.value.email, this.RegisterForm.value.password)
       .subscribe(
         data => {
-          console.log(data);
-          alert('User registration successful');
-          this.router.navigate(['/home']);
-      }, error => {
-          console.log(error);
-          alert('User registration error');
+          console.log('registerInfo', data);
+          ///alert('User registration successful');
+          //this.router.navigate(['/authorization']);
       });
   }
 
   isControlInvalid(controlName: string): boolean {
-    const control = this.ReactiveForm.controls[controlName];
+    const control = this.RegisterForm.controls[controlName];
 
     const result = control.invalid && control.touched;
 
@@ -65,21 +63,26 @@ export class RegisterComponent implements OnInit {
   }
 
   isConfirmPassword(password, confirmPassword): boolean {
+    console.log('confpass', password === confirmPassword)
     return !(password === confirmPassword);
   }
 
 
   private initForm() {
-    this.ReactiveForm = this.fb.group({
+    this.RegisterForm = this.fb.group({
       password: ['', [
         Validators.required,
-        Validators.minLength(8)
+        Validators.minLength(8),
       ]
       ],
+      verifyPassword: ['', Validators.required],
       email: ['', [
         Validators.required, Validators.email
       ]
       ]
-    });
+    },
+      {
+        validator: PasswordValidation.matchPassword('password', 'verifyPassword') // validation for password verification
+      });
   }
 }

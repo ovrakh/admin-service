@@ -2,7 +2,7 @@ import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Router } from
 import {Injectable} from "@angular/core";
 
 @Injectable()
-export class HomeGuard implements CanActivate {
+export class TaskGuard implements CanActivate {
 
   constructor(private router : Router){}
 
@@ -16,4 +16,3 @@ export class HomeGuard implements CanActivate {
     return false;
   }
 }
-

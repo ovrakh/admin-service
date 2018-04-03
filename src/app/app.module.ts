@@ -1,8 +1,9 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
 import { BrowserAnimationsModule } from  '@angular/platform-browser/animations';
+import { MyHttpInterceptor } from './http.interceptors';
 
 
 import { AppComponent } from './app.component';
@@ -37,7 +38,12 @@ import { TaskComponent } from './task/task.component';
     AuthService,
     ApiService,
     HomeService,
-    TaskService
+    TaskService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: MyHttpInterceptor,
+      multi: true
+    }
   ],
   bootstrap: [AppComponent]
 })

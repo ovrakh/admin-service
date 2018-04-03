@@ -1,6 +1,5 @@
-<div class="container color-dark">
 <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.css">
-<form [formGroup]="ReactiveForm" class="login" (submit)="onSubmit()">
+<form [formGroup]="RegisterForm" class="login" (submit)="onSubmit()">
   <div class="ling-registration">
     <p>Sign up or</p>
     <a routerLink="/authorization">Sign in</a>
@@ -23,10 +22,10 @@
 
   <div>
     <label>Повторите пароль:</label>
-    <input #repeatPassword type="password" id="repeat-password">
-    <div class="error" *ngIf="isConfirmPassword(password.value, repeatPassword.value)">
-      Пароли не совпадают
-    </div>
+    <input #verifyPassword type="password" [formControl]="RegisterForm.controls['verifyPassword']" id="verifyPassword">
+      <div class="error" *ngIf="RegisterForm.hasError('mismatch')">
+        Пароли не совпадают
+      </div>
   </div>
 
   <div>
@@ -38,7 +37,3 @@
   </p>
   </div>
 </form>
-<div>
-
-</div>
-</div>

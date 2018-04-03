@@ -26,13 +26,16 @@ export class HomeService {
   removeCompany(id) {
     return this.apiService.get(this.url + `/company/remove?_id=${id}`)
   }
-  
+
   addCompany(company: Company) {
     const body: Company = {
       name: company.name
     };
     // var reqHeader = new HttpHeaders({'No-Auth':'True'});
-    return this.apiService.post(this.url + '/company/add', body);
+    return this.apiService.post(this.url + '/company/add', body)
+      .map(res => {
+        return res;
+      })
   }
 
   setTodo(todo) {
