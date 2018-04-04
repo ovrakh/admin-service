@@ -12,8 +12,7 @@ import {Subscription} from 'rxjs/Subscription';
 })
 
 export class TaskComponent implements OnInit {
-
-  private sub;
+  
   private companyName;
   private todo: object[];
 

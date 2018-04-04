@@ -10,7 +10,10 @@
     <div class="error" *ngIf="isControlInvalid('email')">
       Введите валидный адрес почты
     </div>
-  </div>
+    </div>
+    <!--<div  *ngIf="RegisterForm.controls['checkEmail'].hasError('isEmailUnique')"
+          class="error">Email address already exits</div>
+    </div>-->
 
   <div>
     <label>Пароль:</label>

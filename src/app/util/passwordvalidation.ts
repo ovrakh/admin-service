@@ -7,7 +7,7 @@ export class PasswordValidation {
     } => {
       const password = group.controls[passwordKey];
       const confirmPassword = group.controls[confirmPasswordKey];
-      console.log('Password ' + password.value + ' confirm Password = ' + confirmPassword.value)
+      //console.log('Password ' + password.value + ' confirm Password = ' + confirmPassword.value)
 
       if ( password.value !== confirmPassword.value) {
         return {

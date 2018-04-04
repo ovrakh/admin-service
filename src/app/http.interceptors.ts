@@ -14,14 +14,15 @@ export class MyHttpInterceptor implements HttpInterceptor {
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 
-    if (req.url.indexOf('sign-in') || req.url.indexOf('sign-up') !== -1) {
+    if (req.url.indexOf('sign-in') !== -1 || req.url.indexOf('sign-up') !== -1 || req.url.indexOf('email') !== -1) {
       
-      console.log('YESAUTH')
+      console.log('YESAUTH', req.url)
       return next.handle(req)
         .do(
           succ => { console.log('Authorized', succ)},
           err => {
-            this.router.navigateByUrl('/authorization');
+            console.log(err)
+            //this.router.navigateByUrl('/authorization');
           }
         );
     }

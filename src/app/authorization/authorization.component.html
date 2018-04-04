@@ -5,6 +5,7 @@
     <a routerLink="/register">Sign up</a>
   </div>
   <div>
+    <p>{{errorSign}}</p>
     <label>Email</label>
     <input type="text" id="email" formControlName="email">
     <div class="error" *ngIf="isControlInvalid('email')">

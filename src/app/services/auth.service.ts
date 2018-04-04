@@ -71,4 +71,8 @@ export class AuthService {
     }
   }
 
+  isEmailRegistered(email: string): Observable<any> {
+    return this.apiService.get(`${this.url}/user/check?email=${email}`);
+  }
+
 }

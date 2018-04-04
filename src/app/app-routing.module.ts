@@ -7,11 +7,13 @@ import { HomeComponent } from './home/home.component'
 import { TaskComponent } from "./task/task.component";
 import { HomeGuard }   from './home/home.guards';
 import { TaskGuard } from "./task/task.guards";
+import { RegisterGuard } from "./register/register.guard";
+import { AuthorizationGuard } from "./authorization/authorization.guard";
 
 const routes: Routes = [
-  { path: '', redirectTo: '/authorization', pathMatch: 'full'},
-  { path: 'register', component: RegisterComponent },
-  { path: 'authorization', component: AuthorizationComponent },
+  { path: '', redirectTo: '/home', pathMatch: 'full'},
+  { path: 'register', component: RegisterComponent, canActivate: [ RegisterGuard ] },
+  { path: 'authorization', component: AuthorizationComponent, canActivate: [ AuthorizationGuard ] },
   { path: 'home', component: HomeComponent, canActivate: [ HomeGuard ] },
   { path: 'task', component: TaskComponent, canActivate: [ TaskGuard ] }
 ]
@@ -19,6 +21,6 @@ const routes: Routes = [
 @NgModule({
   imports: [ RouterModule.forRoot(routes) ],
   exports: [ RouterModule ],
-  providers: [ HomeGuard, TaskGuard ]
+  providers: [ HomeGuard, TaskGuard, RegisterGuard, AuthorizationGuard ]
 })
 export class AppRoutingModule { }
