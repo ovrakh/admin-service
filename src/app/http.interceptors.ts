@@ -5,7 +5,6 @@ import { AuthService } from "./services/auth.service";
 import 'rxjs/add/operator/do';
 import { Injectable } from "@angular/core";
 import { Router } from "@angular/router";
-import {tap} from "rxjs/operators";
 
 @Injectable()
 export class MyHttpInterceptor implements HttpInterceptor {
@@ -15,18 +14,19 @@ export class MyHttpInterceptor implements HttpInterceptor {
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 
     if (req.url.indexOf('sign-in') !== -1 || req.url.indexOf('sign-up') !== -1 || req.url.indexOf('email') !== -1) {
-      
       console.log('YESAUTH', req.url)
       return next.handle(req)
         .do(
-          succ => { console.log('Authorized', succ)},
-          err => {
-            console.log(err)
-            //this.router.navigateByUrl('/authorization');
+          (suc) => {
+            console.log('suc', suc)
+          },
+          (err) => {
+            console.log('err', err)
+            //this.flashMessage.show('You are now registered and can log in', {cssClass: 'alert-success', timeout: 3000});
           }
         );
     }
-
+    
     if (localStorage.getItem('token') != null) {
       console.log('NOAUTH')
       const clonedreq = req.clone({

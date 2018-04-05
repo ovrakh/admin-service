@@ -13,6 +13,8 @@ import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms'
 })
 export class RegisterComponent implements OnInit {
   RegisterForm: FormGroup;
+  private msg: string;
+  private isError = true;
 
   constructor(
     private router: Router,
@@ -38,19 +40,26 @@ export class RegisterComponent implements OnInit {
     this.authService.registerUser(this.RegisterForm.value.email, this.RegisterForm.value.password)
       .subscribe(
         res => {
-          console.log('data', res)
-          if (res['success']) {
             this.authService.userAuthentication(res['data']['email'], res['data']['password'])
               .subscribe(res => {
                 localStorage.setItem('token', res['data']['token']);
                 this.router.navigate(['/home']);
               })
-          }
-      }), 
-      (err) => {
-        console.log('error', err)
-      }
+        },
+        err => {
+          console.log('yeterror', err.error)
+          this.newError(err.error.message);
+        })
   }
+
+  async newError(msg : string) {
+    this.msg = msg;
+    this.isError = false;
+    await setTimeout(() => {
+      this.isError = true;
+    }, 3000);
+  }
+
 
   isControlInvalid(controlName: string): boolean {
     const control = this.RegisterForm.controls[controlName];

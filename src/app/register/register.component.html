@@ -16,7 +16,7 @@
     </div>-->
 
   <div>
-    <label>Пароль:</label>
+    <label>Password:</label>
     <input #password type="password" id="password" formControlName="password">
     <div class="error" *ngIf="isControlInvalid('password')">
       Введите валидный пароль
@@ -24,19 +24,23 @@
   </div>
 
   <div>
-    <label>Повторите пароль:</label>
+    <label>Confirm password:</label>
     <input #verifyPassword type="password" [formControl]="RegisterForm.controls['verifyPassword']" id="verifyPassword">
       <div class="error" *ngIf="RegisterForm.hasError('mismatch')">
         Пароли не совпадают
       </div>
   </div>
 
+  <div [hidden]="isError" class="app-error-auth">
+    <app-error-auth [errorAuth]="msg"></app-error-auth>
+  </div>
+
   <div>
-  <p class="sign-in">
-     <!--(click)="add(loginName.value, password.value, repeatPassword.value); loginName.value=''; password.value=''; repeatPassword.value=''"-->
-    <button class="md-raised md-primary md-button md-ink-ripple" type="submit">
-      Sign Up
-    </button>
-  </p>
+    <p class="sign-in">
+      <!--(click)="add(loginName.value, password.value, repeatPassword.value); loginName.value=''; password.value=''; repeatPassword.value=''"-->
+      <button class="md-raised md-primary md-button md-ink-ripple" type="submit">
+        Sign Up
+      </button>
+    </p>
   </div>
 </form>

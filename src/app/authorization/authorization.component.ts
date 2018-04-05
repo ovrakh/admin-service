@@ -12,7 +12,8 @@ import { AuthService } from '../services/auth.service';
 export class AuthorizationComponent implements OnInit {
 
   AuthorizeForm: FormGroup;
-  errorSign: string = 'ssss';
+  private msg: string;
+  private isError = true;
 
   constructor(
     private router: Router,
@@ -22,7 +23,6 @@ export class AuthorizationComponent implements OnInit {
 
   ngOnInit() {
     this.initForm();
-    this.errorSign = ''
   }
 
   onSubmit() {
@@ -38,18 +38,21 @@ export class AuthorizationComponent implements OnInit {
 
     this.authService.userAuthentication(this.AuthorizeForm.value.email, this.AuthorizeForm.value.password)
       .subscribe((res)=>{
-        console.log('TOKEN', res['data']['token']);
         localStorage.setItem('token', res['data']['token']);
-        console.log('successToken', res['success'])
-        if (res['success']) {
           this.router.navigate(['/home']);
-        } else {
-          this.errorSign = '404'; 
-        }
       },
       (err)=>{
         console.log(err);
+        this.newError(err.error.message);
       });
+  }
+
+  async newError(msg : string) {
+    this.msg = msg;
+    this.isError = false;
+    await setTimeout(() => {
+      this.isError = true;
+    }, 3000);
   }
 
   isControlInvalid(controlName: string): boolean {

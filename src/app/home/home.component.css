@@ -33,7 +33,7 @@ input.btn {
   font-weight:bold;
   cursor:pointer;
 }
-.life-container button {
+.life-container .btn-default {
+  background-color: transparent;
   float: right;
-  background-color: #8fe183;
 }

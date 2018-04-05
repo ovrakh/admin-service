@@ -11,7 +11,7 @@
   <div class="col">
     <p class="life-container" *ngFor="let todo of todos; let i = index" (click)="showTask(todo)">
       {{ todo['name'] }}
-      <button class="btn btn-default" (click)="removeItem(todo, i)">Удалить</button>
+      <button class="btn btn-default" (click)="removeItem(todo, i)">&#10008;</button>
     </p>
   </div>
 </div>

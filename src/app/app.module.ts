@@ -16,6 +16,7 @@ import { AuthorizationComponent } from './authorization/authorization.component'
 import { AppRoutingModule } from './/app-routing.module';
 import { HomeComponent } from './home/home.component';
 import { TaskComponent } from './task/task.component';
+import { ErrorAuthComponent } from './error-auth/error-auth.component';
 
 
 @NgModule({
@@ -24,7 +25,8 @@ import { TaskComponent } from './task/task.component';
     RegisterComponent,
     AuthorizationComponent,
     HomeComponent,
-    TaskComponent
+    TaskComponent,
+    ErrorAuthComponent
   ],
   imports: [
     BrowserModule,

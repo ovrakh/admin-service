@@ -90,4 +90,10 @@ input.ng-touched.ng-invalid{
 .error{
   color: red;
 }
-
+.app-error-auth {
+  text-align: center;
+  color: black;
+}
+[hidden] {
+  display: none !important;
+}
