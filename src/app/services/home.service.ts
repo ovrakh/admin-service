@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {ReplaySubject, Observable} from "rxjs/Rx";
 import {HttpClient} from "@angular/common/http";
-import {Company} from "./company.model";
+import {List} from "./list.model";
 import {ApiService} from "./api.service";
 
 @Injectable()
@@ -15,7 +15,7 @@ export class HomeService {
   constructor(private apiService: ApiService) { }
 
   getCompanies() {
-    return this.apiService.get(this.url + '/companies')
+    return this.apiService.get(this.url + '/lists')
       .map(result => {
         console.log("get comp serv data=", result);
         this.setTodo(result.data);
@@ -24,18 +24,27 @@ export class HomeService {
   }
 
   removeCompany(id) {
-    return this.apiService.get(this.url + `/company/remove?_id=${id}`)
+    alert(id)
+    return this.apiService.get(this.url + `/list/remove?_id=${id}`)
   }
 
-  addCompany(company: Company) {
-    const body: Company = {
-      name: company.name
+  addCompany(list: List) {
+    const body: List = {
+      name: list.name
     };
     // var reqHeader = new HttpHeaders({'No-Auth':'True'});
-    return this.apiService.post(this.url + '/company/add', body)
+    return this.apiService.post(this.url + '/list/add', body)
       .map(res => {
         return res;
       })
+  }
+  
+  updateList(id, name) {
+    const body = {
+      id: id,
+      name: name
+    }
+    return this.apiService.post(this.url + '/list/update', body)
   }
 
   setTodo(todo) {

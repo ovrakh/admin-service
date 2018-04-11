@@ -5,7 +5,7 @@
   padding-right: 32px;
   font-weight: 300;
   color: #a8a7a8;
-  text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.8);
+  text-shadow: 1px 1px 0 rgba(0, 0, 0, 1);
 }
 
 input, button, label {

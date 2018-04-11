@@ -1,3 +1,4 @@
+<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.css">
 <div class="container color-dark">
 </div>
 <div class="container color-light" [@todos]="todos.length">
@@ -11,7 +12,14 @@
   <div class="col">
     <p class="life-container" *ngFor="let todo of todos; let i = index" (click)="showTask(todo)">
       {{ todo['name'] }}
-      <button class="btn btn-default" (click)="removeItem(todo, i)">&#10008;</button>
+      <button class="md-button md-ink-ripple
+     " (click)="removeItem(todo, i)">&#10008;</button>
     </p>
+    <!--<p class="life-container" *ngFor="let todo of todos; let i = index">
+      <textarea style="background-color: transparent; resize: none; border-style: none; font-size: 12px">{{ todo['name'] }}</textarea>
+      <button class="md-button md-ink-ripple" (click)="removeItem(todo, i)">&#10008;</button>
+    </p>-->
   </div>
 </div>
+
+

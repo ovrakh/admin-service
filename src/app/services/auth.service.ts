@@ -4,7 +4,7 @@ import {Subject, Observable, ReplaySubject} from "rxjs/Rx";
 
 import { ApiService } from "./api.service";
 import { User } from './user.model';
-import { Company } from './company.model';
+import { List } from './list.model';
 
 @Injectable()
 export class AuthService {

@@ -34,7 +34,7 @@ export class HomeComponent implements OnInit {
 
   itemCount: number = 0;
   btnText: string = 'Add an Item';
-  todoText: string= 'ExampleCompany';
+  todoText: string= 'ExampleList';
   todos = [];
 
   constructor(
@@ -60,6 +60,10 @@ export class HomeComponent implements OnInit {
     this.todoText = '';
     this.itemCount = this.todos.length;
     //this.homeService.changeTodo(this.todos);
+  }
+  
+  updateItem(todo) {
+    this.homeService.updateList(todo._id, todo.name)
   }
 
   removeItem(todo, i) {

@@ -28,12 +28,19 @@ input.btn {
   cursor:pointer;
 }
 .life-container {
+  position: relative;
   background: #8fe183;
   padding:10px;
   font-weight:bold;
   cursor:pointer;
 }
-.life-container .btn-default {
-  background-color: transparent;
+.life-container .md-button {
+  display: inline-block;
   float: right;
+  cursor: pointer;
+  min-height: 16px;
+  min-width: 28px;
+  line-height: 16px;
+  vertical-align: middle;
+  -webkit-box-align: center;
 }
