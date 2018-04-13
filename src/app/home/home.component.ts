@@ -79,8 +79,9 @@ export class HomeComponent implements OnInit {
     this.itemCount = this.todos.length;
   }
 
-  showTask(task) {
-    this.router.navigate(['/task'], { queryParams : { name : task.name } });
+  showTask(list) {
+    console.log('TASK', list)
+    this.router.navigate(['/task'], { queryParams : { id: list._id } });
   }
 
 }

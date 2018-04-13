@@ -1,0 +1,44 @@
+.task-container {
+  position: relative;
+  padding:10px;
+  font-weight:bold;
+  background: #bde8be;
+  cursor:pointer;
+  text-align: left;
+}
+
+.task-container .md-button {
+  display: inline-block;
+  float: right;
+  cursor: pointer;
+  min-height: 16px;
+  min-width: 28px;
+  line-height: 16px;
+  vertical-align: middle;
+  -webkit-box-align: center;
+}
+
+img {
+  margin-top: 6px ;
+  width: 18px;
+  height: 18px;
+  float: right;
+}
+
+.add-task {
+  position: relative;
+  padding:10px;
+  font-weight:bold;
+  cursor:pointer;
+  text-align: left;
+}
+
+.card {
+  background: #d4e8d0;
+}
+
+.compName {
+  text-align: center;
+  font: 26pt/12pt sans-serif;
+  padding-top: 10px;
+}

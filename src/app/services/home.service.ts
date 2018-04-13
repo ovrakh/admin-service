@@ -43,7 +43,7 @@ export class HomeService {
     const body = {
       id: id,
       name: name
-    }
+    };
     return this.apiService.post(this.url + '/list/update', body)
   }
 

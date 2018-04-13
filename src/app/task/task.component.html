@@ -1,52 +1,38 @@
-<p>
+<p class="compName">
   {{companyName}}
 </p>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.css">
+<a href="https://icons8.com"></a>
+
 <div class="container">
   <div class="card-deck mb-3 text-center">
-    <div class="card mb-4 box-shadow">
+    <div class="card mb-4 box-shadow" [@todos]="todos.length">
       <div class="card-header">
-        <h4 class="my-0 font-weight-normal">Pro</h4>
+        <h4 class="my-0 font-weight-normal">Task</h4>
       </div>
       <div class="card-body">
-        <h1 class="card-title pricing-card-title">$15 <small class="text-muted">/ mo</small></h1>
-        <ul class="list-unstyled mt-3 mb-4">
-          <li>20 users included</li>
-          <li>10 GB of storage</li>
-          <li>Priority email support</li>
-          <li>Help center access</li>
-        </ul>
-        <button type="button" class="btn btn-lg btn-block btn-primary">Get started</button>
+        <p class="task-container" *ngFor="let todo of todos; let i = index">
+          {{ todo['task'] }}
+          <button class="md-button md-ink-ripple" (click)="removeItem(todo, i)">&#10008;</button>
+          <img src="https://png.icons8.com/ios/50/000000/edit-property-filled.png">
+        </p>
+        <div class="add-task">
+          <input type="text" class="txt" name="item" [(ngModel)]="todoText" placeholder="Add task">
+          <button type="button" class="btn-primary" (click)="addItem()">Add</button>
+        </div>
       </div>
+    </div>
+
+    <div class="card mb-4 box-shadow">
+      <div class="card-header">
+        <h4 class="my-0 font-weight-normal">Processing</h4>
+      </div>
+
     </div>
     <div class="card mb-4 box-shadow">
       <div class="card-header">
-        <h4 class="my-0 font-weight-normal">Pro</h4>
-      </div>
-      <div class="card-body">
-        <h1 class="card-title pricing-card-title">$15 <small class="text-muted">/ mo</small></h1>
-        <ul class="list-unstyled mt-3 mb-4">
-          <li>20 users included</li>
-          <li>10 GB of storage</li>
-          <li>Priority email support</li>
-          <li>Help center access</li>
-        </ul>
-        <button type="button" class="btn btn-lg btn-block btn-primary">Get started</button>
-      </div>
-    </div>
-    <div class="card mb-4 box-shadow">
-      <div class="card-header">
-        <h4 class="my-0 font-weight-normal">Enterprise</h4>
-      </div>
-      <div class="card-body">
-        <h1 class="card-title pricing-card-title">$29 <small class="text-muted">/ mo</small></h1>
-        <ul class="list-unstyled mt-3 mb-4">
-          <li>30 users included</li>
-          <li>15 GB of storage</li>
-          <li>Phone and email support</li>
-          <li>Help center access</li>
-        </ul>
-        <button type="button" class="btn btn-lg btn-block btn-primary">Contact us</button>
+        <h4 class="my-0 font-weight-normal">Finish</h4>
       </div>
     </div>
   </div>
