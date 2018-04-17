@@ -1,5 +1,5 @@
 <p class="compName">
-  {{companyName}}
+  {{nameList}}
 </p>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.css">
@@ -12,28 +12,48 @@
         <h4 class="my-0 font-weight-normal">Task</h4>
       </div>
       <div class="card-body">
-        <p class="task-container" *ngFor="let todo of todos; let i = index">
+        <div class="drag" id="task" [dragula]='"bag-items"'>
+        <p class="task-container" *ngFor="let todo of taskByStage('task'); let i = index" id="{{todo['_id']}}">
           {{ todo['task'] }}
           <button class="md-button md-ink-ripple" (click)="removeItem(todo, i)">&#10008;</button>
-          <img src="https://png.icons8.com/ios/50/000000/edit-property-filled.png">
+          <img src="https://png.icons8.com/ios/50/000000/edit-property-filled.png" (click)="openDialog(todo, i)">
         </p>
+        </div>
         <div class="add-task">
           <input type="text" class="txt" name="item" [(ngModel)]="todoText" placeholder="Add task">
-          <button type="button" class="btn-primary" (click)="addItem()">Add</button>
+          <button type="button" class="btn btn-outline-success" (click)="addItem()">Add</button>
         </div>
       </div>
     </div>
 
-    <div class="card mb-4 box-shadow">
+    <div class="card mb-4 box-shadow" [@todos]="todos.length">
       <div class="card-header">
         <h4 class="my-0 font-weight-normal">Processing</h4>
       </div>
-
+      <div class="card-body">
+      <div class="drag" id="processing" [dragula]='"bag-items"'>
+      <p class="task-container" *ngFor="let todo of taskByStage('processing'); let i = index" id="{{todo['_id']}}">
+        {{ todo['task'] }}
+        <button class="md-button md-ink-ripple" (click)="removeItem(todo, i)">&#10008;</button>
+        <img src="https://png.icons8.com/ios/50/000000/edit-property-filled.png" (click)="openDialog(todo, i)">
+      </p>
+      </div>
+      </div>
     </div>
-    <div class="card mb-4 box-shadow">
+
+    <div class="card mb-4 box-shadow" [@todos]="todos.length">
       <div class="card-header">
         <h4 class="my-0 font-weight-normal">Finish</h4>
       </div>
+      <div class="card-body">
+      <div class="drag" id="finish" [dragula]='"bag-items"'>
+      <p class="task-container" *ngFor="let todo of taskByStage('finish'); let i = index" id="{{todo['_id']}}">
+        {{ todo['task'] }}
+        <button class="md-button md-ink-ripple" (click)="removeItem(todo, i)">&#10008;</button>
+        <img src="https://png.icons8.com/ios/50/000000/edit-property-filled.png" (click)="openDialog(todo, i)">
+      </p>
     </div>
+    </div>
+  </div>
   </div>
 </div>

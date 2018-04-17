@@ -20,7 +20,7 @@ export class TaskService {
       });
   }
 
-  addTask(id, text) {
+    addTask(id, text) {
     const body= {
       idList: id,
       task: text
@@ -33,9 +33,33 @@ export class TaskService {
   }
 
   removeTask(id) {
-    alert(id)
     return this.apiService.get(this.url + `/task/remove?_id=${id}`)
   }
+
+  updateTask(id, text) {
+    const body= {
+      _id: id,
+      task: text
+    };
+    return this.apiService.post(this.url + '/task/update', body)
+      .map(res => {
+        //this.getTodo(res['data']['id'])
+        return res;
+      })
+  }
+
+  updateStage(id, stage) {
+    const body= {
+      _id: id,
+      stage: stage
+    };
+    return this.apiService.post(this.url + '/task/stage/update', body)
+      .map(res => {
+        //this.getTodo(res['data']['id'])
+        return res;
+      })
+  }
+
 
   setTodo(todo) {
     this.isLoadTodo = Boolean(todo);

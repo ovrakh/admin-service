@@ -81,7 +81,7 @@ export class HomeComponent implements OnInit {
 
   showTask(list) {
     console.log('TASK', list)
-    this.router.navigate(['/task'], { queryParams : { id: list._id } });
+    this.router.navigate(['/task'], { queryParams : { id: list._id, name: list.name } });
   }
 
 }
