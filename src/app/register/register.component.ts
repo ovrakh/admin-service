@@ -30,7 +30,6 @@ export class RegisterComponent implements OnInit {
     const controls = this.RegisterForm.controls;
 
     if (this.RegisterForm.invalid) {
-      console.log('INVALID', this.RegisterForm.invalid)
       Object.keys(controls)
         .forEach(controlName => controls[controlName].markAsTouched());
 
@@ -47,7 +46,6 @@ export class RegisterComponent implements OnInit {
               })
         },
         err => {
-          console.log('yeterror', err.error)
           this.newError(err.error.message);
         })
   }

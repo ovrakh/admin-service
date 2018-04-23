@@ -108,7 +108,6 @@ export class TaskComponent implements OnInit {
   removeItem(todo, i) {
     this.taskService.removeTask(todo._id)
       .subscribe(res => {
-          console.log('RES', res)
         },
         error => {
           console.log('ERROR', error)
@@ -143,7 +142,7 @@ export class TaskComponent implements OnInit {
       if (item.stage && item.stage === stage) {
         todo.push(item);
       }
-    })
+    });
     return todo;
   }
 

@@ -17,7 +17,6 @@ export class HomeService {
   getCompanies() {
     return this.apiService.get(this.url + '/lists')
       .map(result => {
-        console.log("get comp serv data=", result);
         this.setTodo(result.data);
         return result;
       });

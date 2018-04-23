@@ -20,7 +20,6 @@ export class ApiService {
   }
 
   public post(url, body): Observable<any> {
-    console.log('addCheck', body)
     return this.http.post(url, body, { headers: httpOptions.headers });
   }
 

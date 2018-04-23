@@ -20,7 +20,6 @@ export class AuthService {
   getUsers() {
     return this.apiService.get(this.url + '/users')
       .map(result => {
-        console.log("get comp serv data=", result);
         this.setUser(result.data);
         return result;
       });
@@ -29,8 +28,6 @@ export class AuthService {
   asUser(token) {
     return this.apiService.get(this.url + '/user')
       .map(result => {
-        console.log("TOKEN EXP", result);
-        //this.setUser(result.data);
         return result.data.success;
       });
   }
@@ -40,7 +37,6 @@ export class AuthService {
       email: email,
       password: password,
     };
-    console.log('BODY', body)
     // var reqHeader = new HttpHeaders({'No-Auth':'True'});
     return this.apiService.post(this.url + '/user/sign-up', body);
   }

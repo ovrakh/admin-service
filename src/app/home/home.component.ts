@@ -54,7 +54,6 @@ export class HomeComponent implements OnInit {
   addItem() {
     this.homeService.addCompany({ name: this.todoText })
       .subscribe(res => {
-        console.log('addCompanyres',res)
       });
     this.todos.push({ name: this.todoText });
     this.todoText = '';
@@ -69,7 +68,6 @@ export class HomeComponent implements OnInit {
   removeItem(todo, i) {
     this.homeService.removeCompany(todo._id)
       .subscribe(res => {
-        console.log('RES', res)
       },
       error => {
         console.log('ERROR', error)
@@ -80,7 +78,6 @@ export class HomeComponent implements OnInit {
   }
 
   showTask(list) {
-    console.log('TASK', list)
     this.router.navigate(['/task'], { queryParams : { id: list._id, name: list.name } });
   }
 
