@@ -36,8 +36,8 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from "@angular/material/dial
 export class TaskComponent implements OnInit {
 
   msg = '';
-  private idList;
-  private nameList;
+  private idList : number;
+  private nameList : string;
   private todo: object[];
   todoText: string= '';
   todos = [];
@@ -126,7 +126,7 @@ export class TaskComponent implements OnInit {
     });
   }
 
-  taskByStage(stage) {
+  taskByStage(stage : string) {
     let todo = [];
     this.todos.forEach(item => {
       if (item.stage && item.stage === stage) {
@@ -144,7 +144,7 @@ export class TaskComponent implements OnInit {
 })
 export class EditTask {
 
-  private taskText;
+  private taskText: string;
 
   constructor(
     public dialogRef: MatDialogRef<EditTask>,
