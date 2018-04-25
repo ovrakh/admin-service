@@ -29,17 +29,15 @@ export class AuthorizationComponent implements OnInit {
     const controls = this.AuthorizeForm.controls;
 
     if (this.AuthorizeForm.invalid) {
-      console.log('INVALID', this.AuthorizeForm.invalid)
       Object.keys(controls)
         .forEach(controlName => controls[controlName].markAsTouched());
-
       return;
     }
 
     this.authService.userAuthentication(this.AuthorizeForm.value.email, this.AuthorizeForm.value.password)
       .subscribe((res)=>{
         localStorage.setItem('token', res['data']['token']);
-          this.router.navigate(['/home']);
+        this.router.navigate(['/home']);
       },
       (err)=>{
         console.log(err);

@@ -25,23 +25,16 @@ export class AuthService {
       });
   }
 
-  asUser(token) {
-    return this.apiService.get(this.url + '/user')
-      .map(result => {
-        return result.data.success;
-      });
-  }
-
   registerUser(email, password) {
     const body: User = {
       email: email,
       password: password,
     };
-    // var reqHeader = new HttpHeaders({'No-Auth':'True'});
+
     return this.apiService.post(this.url + '/user/sign-up', body);
   }
 
-  userAuthentication(email, password) { 
+  userAuthentication(email, password) {
     const body: User = {
       email: email,
       password: password,

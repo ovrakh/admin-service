@@ -14,7 +14,6 @@ export class TaskService {
   getTasks(id) {
     return this.apiService.get(`${this.url}/task/list?idList=${id}`)
       .map(result => {
-        //console.log("get comp serv data tasks=", result);
         this.setTodo(result.data);
         return result;
       });
@@ -25,7 +24,6 @@ export class TaskService {
       idList: id,
       task: text
     };
-    // var reqHeader = new HttpHeaders({'No-Auth':'True'});
     return this.apiService.post(this.url + '/task/add', body)
       .map(res => {
         return res;
@@ -43,7 +41,6 @@ export class TaskService {
     };
     return this.apiService.post(this.url + '/task/update', body)
       .map(res => {
-        //this.getTodo(res['data']['id'])
         return res;
       })
   }
@@ -55,7 +52,6 @@ export class TaskService {
     };
     return this.apiService.post(this.url + '/task/stage/update', body)
       .map(res => {
-        //this.getTodo(res['data']['id'])
         return res;
       })
   }

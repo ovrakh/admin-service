@@ -32,7 +32,6 @@ export class RegisterComponent implements OnInit {
     if (this.RegisterForm.invalid) {
       Object.keys(controls)
         .forEach(controlName => controls[controlName].markAsTouched());
-
       return;
     }
 
@@ -77,21 +76,5 @@ export class RegisterComponent implements OnInit {
       {
         validator: PasswordValidation.matchPassword('password', 'verifyPassword')
       });
-  }
-
-  isEmailUnique(control: FormControl) {
-    const q = new Promise((resolve, reject) => {
-      setTimeout(() => {
-        this.authService.isEmailRegistered(control.value)
-          .subscribe((res) => {
-            if (res.data) {
-              resolve({'isEmailUnique': true});
-            } else {
-              resolve(null);
-            }
-          });
-      }, 1000);
-    });
-    return q;
   }
 }

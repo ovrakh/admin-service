@@ -31,13 +31,12 @@ export class HomeService {
     const body: List = {
       name: list.name
     };
-    // var reqHeader = new HttpHeaders({'No-Auth':'True'});
     return this.apiService.post(this.url + '/list/add', body)
       .map(res => {
         return res;
       })
   }
-  
+
   updateList(id, name) {
     const body = {
       id: id,

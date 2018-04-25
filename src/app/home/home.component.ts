@@ -47,7 +47,6 @@ export class HomeComponent implements OnInit {
         console.log("res", res);
         this.todos = res['data'];
       });
-    //this.homeService.changeTodo(this.todos);
     this.itemCount = this.todos.length;
   }
 
@@ -58,9 +57,8 @@ export class HomeComponent implements OnInit {
     this.todos.push({ name: this.todoText });
     this.todoText = '';
     this.itemCount = this.todos.length;
-    //this.homeService.changeTodo(this.todos);
   }
-  
+
   updateItem(todo) {
     this.homeService.updateList(todo._id, todo.name)
   }
@@ -73,7 +71,6 @@ export class HomeComponent implements OnInit {
         console.log('ERROR', error)
       });
     this.todos.splice(i, 1);
-    //this.homeService.changeTodo(this.todos);
     this.itemCount = this.todos.length;
   }
 

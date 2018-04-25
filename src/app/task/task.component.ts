@@ -71,13 +71,6 @@ export class TaskComponent implements OnInit {
       });
     this.itemCount = this.todos.length;
 
-    /*this.dragula
-      .drag
-      .subscribe(value => {
-        this.msg = `Dragging the ${ value[1].innerText }!`;
-        console.log('dragvalue', value)
-      });*/
-
     this.dragula
       .drop
       .subscribe(value => {
@@ -102,7 +95,6 @@ export class TaskComponent implements OnInit {
 
     this.todoText = '';
     this.itemCount = this.todos.length;
-    //this.taskService.changeTodo(this.todos);
   }
 
   removeItem(todo, i) {
@@ -113,7 +105,6 @@ export class TaskComponent implements OnInit {
           console.log('ERROR', error)
         });
     this.todos.splice(i, 1);
-    //this.homeService.changeTodo(this.todos);
     this.itemCount = this.todos.length;
   }
 
@@ -137,7 +128,6 @@ export class TaskComponent implements OnInit {
 
   taskByStage(stage) {
     let todo = [];
-    //console.log(this.todos)
     this.todos.forEach(item => {
       if (item.stage && item.stage === stage) {
         todo.push(item);
